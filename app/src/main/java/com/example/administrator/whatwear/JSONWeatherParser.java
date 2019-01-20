@@ -57,9 +57,6 @@ public class JSONWeatherParser {
         // We get weather info (This is an array)
         JSONArray jArr = jObj.getJSONArray("weather");
 
-        // We use only the first value
-        JSONObject JSONWeather = jArr.getJSONObject(0);
-
         JSONObject mainObj = getObject("main", jObj);
         weather.temperature.setTemp(getFloat("temp", mainObj));
 

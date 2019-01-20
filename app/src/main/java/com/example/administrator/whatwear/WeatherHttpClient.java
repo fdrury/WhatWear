@@ -34,14 +34,14 @@ import java.net.URL;
 public class WeatherHttpClient {
 
     private static String BASE_URL = "http://api.openweathermap.org/data/2.5/weather?q=";
-
+    private static String API_KEY = "&appid=f28f345df9148259a4960bfbd2904024";
 
     public String getWeatherData(String location) {
         HttpURLConnection con = null ;
         InputStream is = null;
 
         try {
-            con = (HttpURLConnection) ( new URL(BASE_URL + location)).openConnection();
+            con = (HttpURLConnection) ( new URL(BASE_URL + location + API_KEY)).openConnection();
             con.setRequestMethod("GET");
             con.setDoInput(true);
             con.setDoOutput(true);

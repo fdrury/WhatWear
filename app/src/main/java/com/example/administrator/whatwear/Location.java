@@ -1,14 +1,3 @@
-/**
- * This is a tutorial source code
- * provided "as is" and without warranties.
- *
- * For any question please visit the web site
- * http://www.survivingwithandroid.com
- *
- * or write an email to
- * survivingwithandroid@gmail.com
- *
- */
 package com.example.administrator.whatwear;
 
 import java.io.Serializable;
@@ -72,5 +61,8 @@ public class Location implements Serializable {
     public void setCity(String city) {
         this.city = city;
     }
+
+
+
 
 }

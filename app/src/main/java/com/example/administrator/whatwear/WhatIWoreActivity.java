@@ -189,35 +189,6 @@ public class WhatIWoreActivity extends AppCompatActivity {
     }
 
 
-    /*private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
-
-        @Override
-        protected Weather doInBackground(String... params) {
-            Weather weather = new Weather();
-            String data = (new WeatherHttpClient()).getWeatherData(params[0]);
-
-            try {
-                weather = JSONWeatherParser.getWeather(data);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return weather;
-
-        }
-
-
-        @Override
-        protected void onPostExecute(Weather weather) {
-            super.onPostExecute(weather);
-
-            Button locationButton = (Button)findViewById(R.id.locationButton);
-
-            locationButton.setText(weather.location.getCity() + "," + weather.location.getCountry());
-            temperature = weather.temperature.getTemp();
-
-        }
-    }*/
-
     private static JSONObject getJSONObjectFromURL(String urlString) throws IOException, JSONException {
         HttpURLConnection urlConnection = null;
         URL url = new URL(urlString);

@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,9 +23,17 @@ import java.net.URL;
 
 public class WhatIWoreActivity extends AppCompatActivity {
 
-    float temperature = -1; // temperature is returned in Kelvin so -1 is a good error value
+    private float temperature = -1; // temperature is returned in Kelvin so -1 is a good error value
     private static String BASE_URL = "http://api.openweathermap.org/data/2.5/weather?q=";
     private static String API_KEY = "&appid=f28f345df9148259a4960bfbd2904024";
+    private String city = "Edmonton,CA";
+    private Button saveButton;
+    private Button cancelButton;
+    private Button bodyTempButton;
+    private Button legsTempButton;
+    private ImageButton bodyImageButton;
+    private ImageButton legsImageButton;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +50,38 @@ public class WhatIWoreActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        saveButton = (Button)findViewById(R.id.buttonSave);
+        cancelButton = (Button)findViewById(R.id.buttonCancel);
+        bodyTempButton = (Button)findViewById(R.id.buttonBody);
+        legsTempButton = (Button)findViewById(R.id.buttonLegs);
+        bodyImageButton = (ImageButton)findViewById(R.id.imageButtonBody);
+        legsImageButton = (ImageButton)findViewById(R.id.imageButtonLegs);
         EditText editText = (EditText)findViewById(R.id.editText);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String urlString = BASE_URL + city + API_KEY;
+                try{
+                    JSONObject jsonObject = getJSONObjectFromURL(urlString);
+                    temperature = BigDecimal.valueOf(jsonObject.getDouble("temp")).floatValue();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                // TODO: actually save data
+                finish();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -56,15 +96,7 @@ public class WhatIWoreActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 // Fires right after the text has changed
-                String urlString = BASE_URL + s.toString().replaceAll("\\s","") + API_KEY;
-                try{
-                    JSONObject jsonObject = getJSONObjectFromURL(urlString);
-                    temperature = BigDecimal.valueOf(jsonObject.getDouble("temp")).floatValue();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                city = s.toString().replaceAll("\\s","");
             }
         });
 

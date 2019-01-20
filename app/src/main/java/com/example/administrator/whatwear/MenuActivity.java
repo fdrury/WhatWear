@@ -20,9 +20,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, WhatToWearActivity.class);
-                intent.putExtra("EVALUATION_TYPE", "JERSEY");
-                intent.putExtra("EVALUATOR_ID", getIntent().getStringExtra("EVALUATOR_ID"));
-                intent.putExtra("TRYOUT_ID", getIntent().getStringExtra("TRYOUT_ID"));
                 startActivity(intent);
             }
         });
@@ -31,9 +28,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, WhatIWoreActivity.class);
-                intent.putExtra("EVALUATION_TYPE", "TIMED");
-                intent.putExtra("EVALUATOR_ID", getIntent().getStringExtra("EVALUATOR_ID"));
-                intent.putExtra("TRYOUT_ID", getIntent().getStringExtra("TRYOUT_ID"));
                 startActivity(intent);
             }
         });

@@ -1,8 +1,10 @@
 package com.example.administrator.whatwear;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -37,6 +39,8 @@ public class WhatIWoreActivity extends AppCompatActivity {
     private EditText editText;
     private int bodyTempIndex = 2;
     private int legsTempIndex = 2;
+    private int bodyWearIndex = 0;
+    private int legsWearIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class WhatIWoreActivity extends AppCompatActivity {
 
         bodyTempButton.setBackgroundColor(Color.GREEN);
         legsTempButton.setBackgroundColor(Color.GREEN);
+
+        final Resources res = getResources();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +153,57 @@ public class WhatIWoreActivity extends AppCompatActivity {
                     case 4:
                         legsTempButton.setBackgroundColor(Color.RED);
                         legsTempButton.setText("Hot");
+                        break;
+                }
+            }
+        });
+
+        bodyImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bodyWearIndex++;
+                if(bodyWearIndex > 4) {
+                    bodyWearIndex = 0;
+                }
+                switch(bodyWearIndex) {
+                    case 0:
+                        bodyImageButton.setImageDrawable(ResourcesCompat.getDrawable(res, R.drawable.jacket_thin, null));
+                        break;
+                    case 1:
+                        bodyImageButton.setImageDrawable(ResourcesCompat.getDrawable(res, R.drawable.jacket_thick, null));
+                        break;
+                    case 2:
+                        bodyImageButton.setImageDrawable(ResourcesCompat.getDrawable(res, R.drawable.sweater_thin, null));
+                        break;
+                    case 3:
+                        bodyImageButton.setImageDrawable(ResourcesCompat.getDrawable(res, R.drawable.sweater_thick, null));
+                        break;
+                    case 4:
+                        bodyImageButton.setImageDrawable(ResourcesCompat.getDrawable(res, R.drawable.shirt_long_sleeve, null));
+                        break;
+                }
+            }
+        });
+
+        legsImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                legsWearIndex++;
+                if(legsWearIndex > 4) {
+                    legsWearIndex = 0;
+                }
+                switch(legsWearIndex) {
+                    case 0:
+                        legsImageButton.setImageDrawable(ResourcesCompat.getDrawable(res, R.drawable.pants_thin, null));
+                        break;
+                    case 1:
+                        legsImageButton.setImageDrawable(ResourcesCompat.getDrawable(res, R.drawable.pants_thick, null));
+                        break;
+                    case 2:
+                        legsImageButton.setImageDrawable(ResourcesCompat.getDrawable(res, R.drawable.shorts_short, null));
+                        break;
+                    case 3:
+                        legsImageButton.setImageDrawable(ResourcesCompat.getDrawable(res, R.drawable.shorts_long, null));
                         break;
                 }
             }

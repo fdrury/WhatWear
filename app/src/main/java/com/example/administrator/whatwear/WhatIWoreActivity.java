@@ -1,6 +1,7 @@
 package com.example.administrator.whatwear;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,8 @@ public class WhatIWoreActivity extends AppCompatActivity {
     private ImageButton bodyImageButton;
     private ImageButton legsImageButton;
     private EditText editText;
+    private int bodyTempIndex = 2;
+    private int legsTempIndex = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,9 @@ public class WhatIWoreActivity extends AppCompatActivity {
         legsImageButton = (ImageButton)findViewById(R.id.imageButtonLegs);
         EditText editText = (EditText)findViewById(R.id.editText);
 
+        bodyTempButton.setBackgroundColor(Color.GREEN);
+        legsTempButton.setBackgroundColor(Color.GREEN);
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +85,70 @@ public class WhatIWoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        bodyTempButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bodyTempIndex++;
+                if(bodyTempIndex > 4) {
+                    bodyTempIndex = 0;
+                }
+                switch(bodyTempIndex) {
+                    case 0:
+                        bodyTempButton.setBackgroundColor(Color.MAGENTA);
+                        bodyTempButton.setText("Cold");
+                        break;
+                    case 1:
+                        bodyTempButton.setBackgroundColor(Color.BLUE);
+                        bodyTempButton.setText("Cool");
+                        break;
+                    case 2:
+                        bodyTempButton.setBackgroundColor(Color.GREEN);
+                        bodyTempButton.setText("Perfect");
+                        break;
+                    case 3:
+                        bodyTempButton.setBackgroundColor(Color.YELLOW);
+                        bodyTempButton.setText("Warm");
+                        break;
+                    case 4:
+                        bodyTempButton.setBackgroundColor(Color.RED);
+                        bodyTempButton.setText("Hot");
+                        break;
+                }
+            }
+        });
+
+        legsTempButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                legsTempIndex++;
+                if(legsTempIndex > 4) {
+                    legsTempIndex = 0;
+                }
+                switch(legsTempIndex) {
+                    case 0:
+                        legsTempButton.setBackgroundColor(Color.MAGENTA);
+                        legsTempButton.setText("Cold");
+                        break;
+                    case 1:
+                        legsTempButton.setBackgroundColor(Color.BLUE);
+                        legsTempButton.setText("Cool");
+                        break;
+                    case 2:
+                        legsTempButton.setBackgroundColor(Color.GREEN);
+                        legsTempButton.setText("Perfect");
+                        break;
+                    case 3:
+                        legsTempButton.setBackgroundColor(Color.YELLOW);
+                        legsTempButton.setText("Warm");
+                        break;
+                    case 4:
+                        legsTempButton.setBackgroundColor(Color.RED);
+                        legsTempButton.setText("Hot");
+                        break;
+                }
             }
         });
 
